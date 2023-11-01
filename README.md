@@ -1,16 +1,29 @@
-# foodstock
+# FoodStock
+FoodStock merupakan suatu aplikasi berbasis _website_ yang berfungsi sebagai platform untuk membantu pengelolaan inventori stok bahan makanan suatu bisnis FnB. Melalui aplikasi ini, pengguna dapat mengetahui stok bahan makanan dasar terkini, bahan makanan yang sudah perlu untuk dilakukan _restock_, hingga melakukan pendataan harga bahan makanan tersebut.
 
-A new Flutter project.
+Theme Color
+#2f4f4f darkslategrey
+#c3a379 creamy light brown
+#4f372f dark brown
+#8379c3 ungu
 
-## Getting Started
+### Link Web Aplikasi
+🔗 [Access our FoodStock](http://calista-sekar-tugas.pbp.cs.ui.ac.id) ?????
 
-This project is a starting point for a Flutter application.
+### Penyusun Proyek
+Nama : Calista Sekar    
+NPM : 2206082064    
+Kelas : C  
 
-A few resources to get you started if this is your first Flutter project:
+## Tugas 7
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+### Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing.
+Dalam tugas ini, saya menggunakan beberapa widget, yaitu 
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+1. Menginisiasi project Flutter untuk aplikasi mobile FoodStock di terminal 
+Membuat repositori untuk project mobile app FoodStock
+
