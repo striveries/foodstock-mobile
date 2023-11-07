@@ -57,7 +57,6 @@ Dalam tugas ini, saya menggunakan beberapa widget, diantaranya :
         1. Melihat daftar item (Lihat Item)
         2. Menambah item (Tambah Item)
         3. Logout (Logout)
-    dengan kode berikut
     ```
         final List<ShopItem> items = [
         ShopItem("Lihat Item", Icons.checklist),
@@ -69,7 +68,6 @@ Dalam tugas ini, saya menggunakan beberapa widget, diantaranya :
         1. "Kamu telah menekan tombol Lihat Item" ketika tombol Lihat Item ditekan.
         2. "Kamu telah menekan tombol Tambah Item" ketika tombol Tambah Item ditekan.
         3. "Kamu telah menekan tombol Logout" ketika tombol Logout ditekan
-        dengan kode berikut :
         ```
         class ShopCard extends StatelessWidget {
         final ShopItem item;
