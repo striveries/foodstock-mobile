@@ -220,5 +220,3 @@ Saya juga memutuskan untuk menambahkan sebuah drawer di aplikasi untuk navigasi 
 - **Menambahkan Drawer**: Saya menggunakan widget `Drawer` di Flutter. Di dalam drawer ini, saya menambahkan setidaknya dua opsi: "Halaman Utama" dan "Tambah Item".
 
 - **Navigasi dari Drawer**: Saya menambahkan fungsi navigasi sehingga ketika pengguna memilih opsi "Halaman Utama" dari drawer, mereka akan dibawa kembali ke `MyHomePage`. Demikian pula, ketika memilih "Tambah Item", aplikasi akan membawa mereka ke `StockFormPage`.
-
-Dengan langkah-langkah ini, saya berhasil membuat aplikasi yang tidak hanya memungkinkan pengguna untuk menambahkan item baru tetapi juga memudahkan navigasi antara halaman utama dan halaman formulir tambah item.
