@@ -8,14 +8,14 @@ Theme Color
 #8379c3 ungu
 
 ### Link Web Aplikasi
-🔗 [Access our FoodStock](http://calista-sekar-tugas.pbp.cs.ui.ac.id) ?????
+🔗 [Access our FoodStock](http://calista-sekar-tugas.pbp.cs.ui.ac.id)
 
 ### Penyusun Proyek
 Nama : Calista Sekar    
 NPM : 2206082064    
 Kelas : C  
 
-## Tugas 7
+# Tugas 7
 
 ### Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?
 Perbedaan utama antara stateless dan stateful widget terletak pada bagaimana state/keadaan dipertahankan.
@@ -114,4 +114,111 @@ Dalam tugas ini, saya menggunakan beberapa widget, diantaranya :
         }
         }
         ```
+## Tugas 8
+### Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+`Navigator.push()` menambahkan halaman baru ke stack sehingga memungkinkan navigasi "kembali", sedangkan `Navigator.pushReplacement()` menggantikan halaman saat ini dengan yang baru, sehingga menghilangkan kemungkinan kembali ke halaman sebelumnya.
+1. **Navigator.push()** digunakan untuk menavigasi ke halaman baru di atas stack navigasi saat ini. Halaman baru ditambahkan ke atas stack, dan pengguna dapat kembali ke halaman sebelumnya dengan menggunakan tombol kembali atau gestur. **Navigator.push()** cocok digunakan ketika Anda ingin memungkinkan pengguna untuk kembali ke halaman sebelumnya. Misalnya, dari halaman beranda ke halaman detail produk di aplikasi e-commerce.
 
+   **Contoh**:
+   ```dart
+   Navigator.push(
+     context,
+     MaterialPageRoute(builder: (context) => DetailPage()),
+   );
+   ```
+2. **Navigator.pushReplacement()** digunakan untuk menggantikan halaman saat ini dalam stack navigasi dengan halaman baru. Halaman sebelumnya dihapus dari stack, sehingga pengguna tidak dapat kembali ke halaman tersebut. COntoh penggunaannya addalah ketika proses autentikasi. Misalnya, setelah proses login berhasil, dilakukan navigasi ke halaman beranda yang tidak memungkinkan pengguna kembali ke halaman login.
+
+   **Contoh**:
+   ```dart
+   Navigator.pushReplacement(
+     context,
+     MaterialPageRoute(builder: (context) => HomePage()),
+   );
+   ```
+
+### Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
+1. **Container**: Widget yang menggabungkan fitur tata letak, lukisan, dan styling. Container bisa memiliki padding, margin, border, dan background color. Container cocok untuk membuat sebuah box dengan ukuran, warna, atau dekorasi tertentu. Sering digunakan untuk membuat background dan memberikan jarak antar elemen.
+
+2. **Row dan Column**: Row mengatur anak-anaknya secara horizontal, sedangkan Column mengaturnya secara vertikal. Row ideal untuk layout linear, seperti daftar horizontal (Row) atau vertikal (Column). Sering digunakan untuk mengatur tombol, teks, atau ikon dalam satu baris atau kolom.
+
+3. **Stack**:  Stack memungkinkan widget untuk ditumpuk di atas satu sama lain. Stack juga berguna untuk overlay widget, seperti menempatkan teks di atas gambar atau membuat efek tumpang tindih.
+
+4. **GridView** menampilkan item dalam grid dua dimensi. GridView cocok untuk menampilkan data dalam bentuk grid, seperti galeri foto atau grid menu.
+
+5. **ListView** menampilkan daftar item yang dapat di-scroll secara vertikal. ListView ideal untuk daftar yang panjang dan bisa di-scroll, seperti daftar email atau feed berita.
+
+6. **Flex dan Expanded**: Flex adalah versi lebih fleksibel dari Row dan Column. Expanded digunakan dalam Flex untuk memberikan anak-anaknya ruang yang fleksibel. Biasanya digunakan untuk membuat layout yang responsif dengan membagi ruang secara proporsional.
+
+7. **Wrap** mirip dengan Row atau Column, tetapi akan secara otomatis pindah ke baris atau kolom baru saat tidak ada cukup ruang. Wrap cocok untuk widget yang jumlahnya dinamis dan bisa lebih dari yang dapat ditampung oleh layar secara horizontal atau vertikal.
+
+8. **Padding** digunakan untuk memberikan jarak dalam layout, seperti jarak antara teks dan batas widgetnya.
+
+9. **Align dan Center**: Align mengizinkan penyesuaian posisi anak di dalam dirinya, sedangkan Center adalah versi khusus dari Align yang menengahkan anaknya. Keduanya berguna untuk menentukan posisi atau menengahkan widget di dalam container atau layout lainnya.
+
+### Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+1. **`TextFormField` untuk Nama**:  untuk memungkinkan pengguna memasukkan nama item karena berupa input teks dalam Flutter. `TextFormField` dapat melakukan validasi dan manipulasi teks, membuatnya ideal untuk mengumpulkan input seperti nama item.
+
+2. **`TextFormField` untuk Jumlah Item**: untuk memungkinkan pengguna memasukkan jumlah item dalam bentuk angka. Meskipun masih menggunakan `TextFormField`, field ini khusus ditujukan untuk angka. Dengan menggunakan validator, input yang diterima adalah dapat dipastikan adalah numerik.
+
+3. **`TextFormField` untuk Deskripsi Item**: Untuk memasukkan deskripsi lebih lanjut tentang item. Deskripsi memungkinkan teks yang lebih panjang dan mungkin multi-line, dan `TextFormField` dapat dikonfigurasi untuk menangani input multi-line. 
+
+4. **`ElevatedButton` untuk Submit**: untuk mengirimkan formulir. Selain itu,  `ElevatedButton` memberikan efek visual dan feedback yang jelas saat ditekan, memberitahu pengguna bahwa aksi untuk menyimpan data telah dilakukan. 
+
+### Bagaimana penerapan clean architecture pada aplikasi Flutter?
+1. **Struktur Folder**:
+Clean architecture pada Flutter dapat diterapkan dengan pertama memisahkan kode menjadi `/domain`, `/data`, dan `/presentation`.
+   - `/domain` berisi `entities`, `usecases`, dan `repository interfaces`.
+   - `/data` berisi `models`, `data sources`, dan `repository implementations`.
+   - `/presentation` berisi `pages/screens`, `widgets`, dan `state management` (misalnya BLoC atau ViewModel).
+
+2. **Domain Layer**: pengembangan aplikasi dengan logika bisnis dan entitas.
+   - `Entities`: Objek bisnis murni.
+   - `Use Cases`: Logika bisnis aplikasi.
+   - `Repository Interfaces`: Abstraksi untuk akses data.
+
+3. **Data Layer**: implementasi detail teknis untuk penyimpanan data.
+   - `Models`: Representasi data.
+   - `Data Sources`: Interaksi dengan sumber data eksternal (API, database).
+   - `Repositories`: Implementasi konkrit dari `repository interfaces`.
+
+4. **Presentation Layer**: UI dan logika presentasi.
+   - `Pages/Screens`: Halaman UI.
+   - `Widgets`: Komponen UI.
+   - `State Management`: Mengelola state UI (BLoC, Provider, dll).
+
+5. **Dependency Injection**:
+   - Menggunakan alat seperti `get_it` untuk injeksi dependensi.
+   - Memudahkan pengujian dan pemeliharaan.
+
+6. **Pengujian**:
+   - Melakukan unit test, widget test, dan integration test.
+
+7. **Prinsip SOLID**:
+   - Terapkan prinsip SOLID untuk kode yang bersih dan mudah dipelihara.
+
+### STEP BY STEP TUGAS 8
+### 1. Membuat Halaman Formulir Tambah Item Baru (`stocklist_form.dart`)
+
+Saya memulai dengan membuat file baru bernama `stocklist_form.dart`. Di dalam file ini, saya mendefinisikan sebuah `StatefulWidget` yang saya namakan `StockFormPage`. Tujuan utama saya adalah membuat formulir untuk menambahkan item baru ke dalam aplikasi.
+
+- **Menambahkan Elemen Input**: Saya menambahkan tiga elemen input menggunakan `TextFormField` di dalam `StockFormPage`. Ketiga elemen tersebut adalah `name`, `amount`, dan `description`. Saya memastikan setiap elemen input ini dapat menerima input dari pengguna.
+
+- **Validasi Input**: Untuk setiap `TextFormField`, saya menambahkan validasi. Saya ingin memastikan bahwa pengguna tidak meninggalkan input kosong dan memasukkan data sesuai dengan tipe yang diharapkan. Misalnya, untuk `amount`, saya memastikan bahwa inputnya adalah angka.
+
+- **Membuat Tombol Save**: Saya menambahkan sebuah tombol `ElevatedButton` di bagian bawah formulir. Saya menulis logika di dalam `onPressed` dari tombol ini untuk memvalidasi form saat pengguna menekan tombol. Jika validasi berhasil, saya menampilkan pop-up yang menunjukkan data yang dimasukkan pengguna, menggunakan `AlertDialog`.
+
+### 2. Menambahkan Navigasi ke Halaman Formulir dari Halaman Utama
+
+Di halaman utama aplikasi saya (`MyHomePage`), saya melakukan beberapa perubahan:
+
+- **Tombol Tambah Item**: Di dalam `GridView`, saya menambahkan sebuah `InventoryCard` yang berfungsi sebagai tombol untuk navigasi. Saat pengguna menekan tombol "Tambah Item", saya mengatur agar aplikasi melakukan navigasi ke `StockFormPage` menggunakan `Navigator.push`.
+
+### 3. Membuat Drawer dengan Opsi Navigasi
+
+Saya juga memutuskan untuk menambahkan sebuah drawer di aplikasi untuk navigasi yang lebih mudah.
+
+- **Menambahkan Drawer**: Saya menggunakan widget `Drawer` di Flutter. Di dalam drawer ini, saya menambahkan setidaknya dua opsi: "Halaman Utama" dan "Tambah Item".
+
+- **Navigasi dari Drawer**: Saya menambahkan fungsi navigasi sehingga ketika pengguna memilih opsi "Halaman Utama" dari drawer, mereka akan dibawa kembali ke `MyHomePage`. Demikian pula, ketika memilih "Tambah Item", aplikasi akan membawa mereka ke `StockFormPage`.
+
+Dengan langkah-langkah ini, saya berhasil membuat aplikasi yang tidak hanya memungkinkan pengguna untuk menambahkan item baru tetapi juga memudahkan navigasi antara halaman utama dan halaman formulir tambah item.

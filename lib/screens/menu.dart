@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:foodstock/screens/stocklist_form.dart';
+import 'package:foodstock/widgets/stock_card.dart';
+import 'package:foodstock/widgets/left_drawer.dart';
+import 'item_list_page.dart';
 
 
 class MyHomePage extends StatelessWidget {
     MyHomePage({Key? key}) : super(key: key);
     final List<InventoryItem> items = [
-    InventoryItem("Lihat Item", Icons.checklist),
-    InventoryItem("Tambah Item", Icons.add_shopping_cart),
-    InventoryItem("Logout", Icons.logout),
+    InventoryItem("1", "Lihat Item", Icons.checklist),
+    InventoryItem("2","Tambah Item", Icons.add_shopping_cart),
+    InventoryItem("3","Logout", Icons.logout),
 ];
 
     @override
@@ -16,7 +20,10 @@ class MyHomePage extends StatelessWidget {
               title: const Text(
                 'FoodStock',
               ),
+                backgroundColor: Color.fromARGB(255, 162, 39, 39),
+                foregroundColor: Colors.white,
             ),
+            drawer: const LeftDrawer(),
             body: SingleChildScrollView(
               // Widget wrapper yang dapat discroll
               child: Padding(
@@ -59,12 +66,6 @@ class MyHomePage extends StatelessWidget {
     }
 }
 
-class InventoryItem {
-  final String name;
-  final IconData icon;
-
-  InventoryItem(this.name, this.icon);
-}
 
 class InventoryCard extends StatelessWidget {
   final InventoryItem item;
@@ -83,7 +84,16 @@ class InventoryCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
-        },
+            // Navigate ke route yang sesuai (tergantung jenis tombol)
+            if (item.name == "Tambah Item") {
+              Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const StockFormPage()));
+              // TODO: Gunakan Navigator.push untuk melakukan navigasi ke MaterialPageRoute yang mencakup ShopFormPage.
+            } else if (item.name == "Lihat Item") {
+              // Navigator.push(context,
+              // MaterialPageRoute(builder: (context) => const ItemListPage()));
+            }
+          },
         child: Container(
           // Container untuk menyimpan Icon dan Text
           padding: const EdgeInsets.all(8),
@@ -91,6 +101,12 @@ class InventoryCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  item.nomorItem,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white),
+                ),
+
                 Icon(
                   item.icon,
                   color: Colors.white,

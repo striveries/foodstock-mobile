@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodstock/menu.dart';
+import 'package:foodstock/screens/menu.dart';
 
 
 void main() {
