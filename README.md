@@ -19,7 +19,7 @@ Kelas : C
 
 ### Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?
 Perbedaan utama antara stateless dan stateful widget terletak pada bagaimana state/keadaan dipertahankan.
-- **Stateless Widget:**
+- Stateless Widget:
     - **Tidak Memiliki State**: Stateless widget tidak dapat mempertahankan keadaan. Mereka mewakili bagian dari UI yang tidak diharapkan untuk berubah berdasarkan interaksi pengguna atau data internal.
     - **Rebuild**: Setiap kali informasi yang mereka terima dari parent widget mereka berubah, mereka direbuild. Ini berarti bahwa mereka tidak menyimpan nilai atau konfigurasi yang mungkin berubah selama waktu hidup widget.
     Contoh dari Stateless Widget diantaranya :  Ikon, teks, dan tombol yang tidak berubah ketika diinteraksi
@@ -220,3 +220,83 @@ Saya juga memutuskan untuk menambahkan sebuah drawer di aplikasi untuk navigasi 
 - **Menambahkan Drawer**: Saya menggunakan widget `Drawer` di Flutter. Di dalam drawer ini, saya menambahkan setidaknya dua opsi: "Halaman Utama" dan "Tambah Item".
 
 - **Navigasi dari Drawer**: Saya menambahkan fungsi navigasi sehingga ketika pengguna memilih opsi "Halaman Utama" dari drawer, mereka akan dibawa kembali ke `MyHomePage`. Demikian pula, ketika memilih "Tambah Item", aplikasi akan membawa mereka ke `StockFormPage`.
+
+## Tugas 9
+
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Bisa. Pengambilan data JSON tanpa membuat model terlebih dahulu lebih fleksibel dan cepat. Namun, pendekatan ini dapat meningkatkan risiko kesalahan karena kurangnya validasi dan struktur yang jelas, dan bisa menjadi sulit untuk dipelihara jika format JSON berubah sepanjang waktu.Penggunaan model untuk pengambilan data JSON memerlukan lebih banyak waktu dalam pengembangan awal karena perlu melakukan penyusunan struktur data terlebih dahulu. Namun, pengambilan data jSOn dengan model meningkatkan akurasi dan konsistensi data, serta memudahkan pemeliharaan dan pembaruan di masa depan yang mana sangat cocok untuk aplikasi skala besar atau proyek yang memerlukan stabilitas dan skalabilitas jangka panjang.
+
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+Dalam pengembangan aplikasi Flutter, `CookieRequest` dapat menjadi alat untuk mengelola cookie ketika user berkomunikasi dengan server melalui HTTP. Fungsinya dapat untuk menyimpan dan mengupdate cookie, serta menjaga sesi pengguna tetap aktif. `CookieRequest` perlu dibagikan ke seluruh komponen aplikasi karena untuk memastikan semua bagian aplikasi bisa akses informasi sesi yang sama, membuat pemeliharaan lebih mudah, dan menjaga keamanan. 
+
+### Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+1. Pengiriman Permintaan HTTP: aplikasi Flutter Anda perlu mengirim permintaan HTTP ke server atau API yang menyediakan data dalam format JSON. Ini biasanya dilakukan menggunakan paket seperti `http` yang tersedia di Flutter.
+2. Menerima dan Membaca Respons JSON: Setelah permintaan dikirim, aplikasi akan menerima respons dari server. Respons ini umumnya dalam format JSON, yang merupakan format standar untuk pertukaran data di web.
+3. Deserialisasi Data JSON: Data JSON yang diterima kemudian perlu diubah (deserialisasi) menjadi objek atau struktur data yang dapat digunakan dalam kode Dart. Flutter menyediakan cara untuk melakukan ini, misalnya dengan menggunakan `json.decode()` dari library `dart:convert`.
+4. Penggunaan Data dalam UI: Setelah data tersedia dalam format yang sesuai, Anda dapat menggunakan data tersebut untuk membangun antarmuka pengguna (UI) di Flutter. Misalnya, data dapat ditampilkan dalam widget seperti `ListView`, `Text`, atau widget kustom lainnya.
+5. Pembaruan State: Flutter menggunakan konsep state untuk mengelola data yang berubah. Saat data JSON diterima dan diproses, Anda mungkin perlu memperbarui state aplikasi menggunakan `setState()`, `Provider`, `Bloc`, atau pendekatan state management lainnya, agar UI dapat diperbarui dengan data terbaru.
+6. Menampilkan Data di UI: Data yang telah diproses dan dimasukkan ke dalam state aplikasi ditampilkan dalam UI. Ini bisa berupa teks, daftar, grafik, atau bentuk visualisasi data lainnya, tergantung pada kebutuhan aplikasi Anda.
+
+### Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+Dalam proses autentikasi dari aplikasi Flutter ke backend Django, pertama, pengguna memasukkan data akun (biasanya username dan password) di aplikasi Flutter. Data ini kemudian dikirim melalui permintaan HTTP (biasanya POST) ke server Django. Di sisi server, Django menerima permintaan ini dan memprosesnya menggunakan sistem autentikasi yang terintegrasi, seperti Django's authentication system. Server Django kemudian memvalidasi kredensial terhadap database pengguna. Jika kredensial valid, Django menghasilkan token (misalnya JWT - JSON Web Token) dan mengirimkannya kembali ke aplikasi Flutter. Aplikasi Flutter menerima token ini dan, berdasarkan respons tersebut, memperbarui state aplikasi untuk mencerminkan status autentikasi pengguna. Setelah pengguna terautentikasi, aplikasi Flutter kemudian menampilkan menu atau navigasi yang sesuai, memberikan akses ke fitur-fitur yang diizinkan berdasarkan status autentikasi pengguna tersebut. Selama proses ini, keamanan data dijaga melalui penggunaan HTTPS untuk enkripsi data yang dikirim antara aplikasi Flutter dan server Django.
+
+### Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+**Scaffold:**
+Menyediakan struktur dasar tata letak visual untuk aplikasi, termasuk AppBar, Drawer, dan Body.
+
+**AppBar:**
+Menampilkan bar di bagian atas layar, biasanya berisi judul dan mungkin beberapa aksi.
+
+**Text:**
+Menampilkan string teks dengan berbagai styling.
+
+**LeftDrawer:**
+ Widget kustom (berdasarkan nama, tampaknya bukan bagian dari library Flutter standar) yang mungkin berfungsi sebagai menu navigasi samping.
+
+**FutureBuilder:**
+ Membangun widget berdasarkan hasil terakhir yang dihasilkan oleh Future, seperti data yang diambil dari internet.
+
+**Center:**
+  Menengahkan widget anaknya (dalam kasus ini, CircularProgressIndicator).
+
+**CircularProgressIndicator:**
+  Menampilkan indikator loading berputar, biasanya digunakan saat menunggu data atau proses.
+
+**Container:**
+  Menyediakan kotak untuk mendekorasi, memberi jarak, atau mengubah dimensi anaknya.
+
+**ListTile:**
+  Widget dengan pola tetap yang biasanya digunakan untuk daftar, berisi icon dan teks.
+
+**Icon:**
+  Menampilkan ikon dari set ikon material.
+
+**Navigator.push dan Navigator.pushReplacement:**
+  Mengontrol navigasi antar halaman. `push` menambahkan rute ke stack navigator, sedangkan `pushReplacement` mengganti rute saat ini dengan rute baru.
+
+**MaterialPageRoute:**
+  Memberikan transisi halaman dengan gaya material design.
+
+**ScaffoldMessenger.of(context).showSnackBar:**
+  Menampilkan pesan singkat di bagian bawah layar (SnackBar).
+
+**SnackBar:**
+  Menampilkan pesan ringkas, sering digunakan untuk feedback atau notifikasi singkat.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial). 
+
+1. Mengintegrasikan autentikasi aplikasi Flutter dengan Django dan menambahkan beberapa variabel ini
+```
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+```
+2. Mengintegrasikan sistem autentikasi pada Flutter
+3. Membuat model kustom dengan Quicktype
+4. Menerapkan Fetch data dari Django ke FLutter
+5. Mengintegrasikan form flutter dengan layout django
+6. Menambahkan detail page untuk item
+7. Menambahkan pencegahan Csrf exempt

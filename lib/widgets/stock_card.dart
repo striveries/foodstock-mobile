@@ -10,9 +10,9 @@ class InventoryItem {
 }
 
 class Item {
-  String name;
+  String item_name;
   int amount;
   String description;
 
-  Item(this.name, this.amount, this.description);
+  Item(this.item_name, this.amount, this.description);
 }

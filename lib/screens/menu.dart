@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodstock/screens/list_item.dart';
+import 'package:foodstock/screens/login.dart';
 import 'package:foodstock/screens/stocklist_form.dart';
 import 'package:foodstock/widgets/stock_card.dart';
 import 'package:foodstock/widgets/left_drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'item_list_page.dart';
 
 
@@ -24,11 +28,15 @@ class MyHomePage extends StatelessWidget {
                 foregroundColor: Colors.white,
             ),
             drawer: const LeftDrawer(),
-            body: SingleChildScrollView(
+            body: 
+            
+            SingleChildScrollView(
               // Widget wrapper yang dapat discroll
               child: Padding(
                 padding: const EdgeInsets.all(10.0), // Set padding dari halaman
-                child: Column(
+                child: 
+                
+                Column(
                   // Widget untuk menampilkan children secara vertikal
                   children: <Widget>[
                     const Padding(
@@ -41,6 +49,7 @@ class MyHomePage extends StatelessWidget {
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
+
                       ),
                     ),
                     // Grid layout
@@ -58,6 +67,7 @@ class MyHomePage extends StatelessWidget {
                       }).toList(),
                     ),
                   ],
+                
                 ),
               ),
             ),
@@ -74,11 +84,12 @@ class InventoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       color: const Color.fromARGB(255, 41, 109, 69),
       child: InkWell(
         // Area responsive terhadap sentuhan
-        onTap: () {
+        onTap: () async {
           // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -88,10 +99,31 @@ class InventoryCard extends StatelessWidget {
             if (item.name == "Tambah Item") {
               Navigator.push(context,
               MaterialPageRoute(builder: (context) => const StockFormPage()));
+            }
               // TODO: Gunakan Navigator.push untuk melakukan navigasi ke MaterialPageRoute yang mencakup ShopFormPage.
-            } else if (item.name == "Lihat Item") {
-              // Navigator.push(context,
-              // MaterialPageRoute(builder: (context) => const ItemListPage()));
+            else if (item.name == "Lihat Item") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ItemPage()));
+            }
+            else if (item.name == "Logout") {
+              final response = await request.logout(
+                  // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                  "http://127.0.0.1:8000/auth/logout/");
+              String message = response["message"];
+              if (response['status']) {
+                String uname = response["username"];
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("$message Sampai jumpa, $uname."),
+                ));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("$message"),
+                ));
+              }
             }
           },
         child: Container(

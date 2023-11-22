@@ -20,7 +20,7 @@ class ItemListPage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(items[index].name, style: TextStyle(fontSize: 22)),
+                Text(items[index].item_name, style: TextStyle(fontSize: 22)),
                 Text(items[index].amount.toString(), style: TextStyle(fontSize: 22)),
                 Text(items[index].description, style: TextStyle(fontSize: 22)),
                 SizedBox(height: 10), // Memberikan sedikit ruang antar item
