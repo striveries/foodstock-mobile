@@ -105,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.indigo,
+        backgroundColor:  Color.fromARGB(255, 162, 39, 39),  
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -136,8 +136,8 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 24.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.indigo, // Button color
-                onPrimary: Colors.white, // Text color
+                backgroundColor: const Color.fromARGB(255, 41, 109, 69),
+                foregroundColor: Colors.white,
               ),
               onPressed: () {
                 registerUser();

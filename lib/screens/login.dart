@@ -41,11 +41,14 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        backgroundColor:  Color.fromARGB(255, 162, 39, 39),  
+        foregroundColor:  Colors.white,  
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _usernameController,
@@ -63,6 +66,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 24.0),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 41, 109, 69),
+                foregroundColor: Colors.white,
+              ),
               onPressed: () async {
                 String username = _usernameController.text;
                 String password = _passwordController.text;
@@ -109,24 +116,24 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text('Login'),
             ),
           const SizedBox(
-                          height: 12.0), // Space between login and register buttons
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.grey, // Button color
-                                onPrimary: Colors.white, // Text color
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const RegisterPage()),
-                                );
-                              },
-                              child: const Text('Register'),
-                            )
-                          ),
+            height: 12.0), // Space between login and register buttons
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 61, 160, 102),
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterPage()),
+                  );
+                },
+                child: const Text("Doesn't have any account yet? Register here"),
+              )
+            ),
           ],
         ),
       ),
