@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foodstock/screens/detail_item.dart';
+import 'package:foodstock/screens/menu.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:foodstock/models/item.dart';
 import 'package:foodstock/widgets/left_drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ItemPage extends StatefulWidget {
     const ItemPage({Key? key}) : super(key: key);
@@ -13,36 +16,45 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
-Future<List<Item>> fetchItem() async {
-    var url = Uri.parse(
-        'http://127.0.0.1:8000/json/');
-    var response = await http.get(
-        url,
-        headers: {"Content-Type": "application/json"},
-    );
+Future<List<Item>> fetchItem(CookieRequest request) async {
 
-    // melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
+  try {
+    var response = await request.get('https://calista-sekar-tugas.pbp.cs.ui.ac.id/get-product/');
 
-    // melakukan konversi data json menjadi object Item
-    List<Item> list_item = [];
-    for (var d in data) {
+    // if (response.statusCode == 200) {
+      // var data = jsonDecode(utf8.decode(response.bodyBytes));
+      List<Item> list_item = [];
+
+      for (var d in response) {
         if (d != null) {
-            list_item.add(Item.fromJson(d));
+          list_item.add(Item.fromJson(d));
         }
-    }
-    return list_item;
+      }
+      return list_item;
+    // } else {
+    //   // print('Raw Response: ${response.body}');
+    //   // print('Content-Type: ${response.headers['content-type']}');
+
+    //   throw Exception('Failed to load items. Invalid response.');
+    // }
+  } catch (e) {
+    print('Error during fetchItem: $e');
+    throw Exception('Failed to load items: $e');
+  }
 }
+
 
 @override
 Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
         appBar: AppBar(
         title: const Text('Item'),
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
-            future: fetchItem(),
+            future: fetchItem(request),
             builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());
