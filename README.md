@@ -1,14 +1,18 @@
 # FoodStock
 FoodStock merupakan suatu aplikasi berbasis _website_ yang berfungsi sebagai platform untuk membantu pengelolaan inventori stok bahan makanan suatu bisnis FnB. Melalui aplikasi ini, pengguna dapat mengetahui stok bahan makanan dasar terkini, bahan makanan yang sudah perlu untuk dilakukan _restock_, hingga melakukan pendataan harga bahan makanan tersebut.
 
-Theme Color
-#2f4f4f darkslategrey
-#c3a379 creamy light brown
-#4f372f dark brown
-#8379c3 ungu
+Kini, FoodStock hadir dalam bentuk aplikasi!
+Unduh aplikasi foodstock [Link AppCenter]
 
-### Link Web Aplikasi
-🔗 [Access our FoodStock](http://calista-sekar-tugas.pbp.cs.ui.ac.id)
+Theme Color
+`#2f4f4f` darkslategrey
+`#c3a379` creamy light brown
+`#4f372f` dark brown
+`#8379c3` ungu
+
+### Link Web dan Aplikasi
+🔗 [Access our Website](http://calista-sekar-tugas.pbp.cs.ui.ac.id)
+🔗 [Download our App](http://calista-sekar-tugas.pbp.cs.ui.ac.id)
 
 ### Penyusun Proyek
 Nama : Calista Sekar    
